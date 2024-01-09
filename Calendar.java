@@ -16,17 +16,14 @@ public class Calendar {
 	 * number of Sundays that occured on the first day of the month during this period.
 	 */
 	public static void main(String args[]) {
-		// Advances the date and the day-of-the-week from 1/1/1900 till 31/12/1999, inclusive.
 	    // Prints each date dd/mm/yyyy in a separate line. If the day is a Sunday, prints "Sunday".
-	    // The following variable, used for debugging purposes, counts how many days were advanced so far.
-	    int debugDaysCounter = 0; 
-		int stop = 36523;
+		// get the selected year from the user.
 		int Selectedyear = Integer.parseInt(args[0]);
-	    //// Write the necessary initialization code, and replace the condition
-	    //// of the while loop with the necessary condition 
+		
 		while (year <= Selectedyear)  {
-            //debugDaysCounter++;
+            //advance the year until reaching the selected year.
 				advance();
+			// print the selected year calender + sunday.
 			if (year == Selectedyear)
 			{
 			if (dayOfWeek != 1)
@@ -36,46 +33,43 @@ public class Calendar {
 		}
 		}
     }
+	
 	 // Advances the date (day, month, year) and the day-of-the-week.
 	 // If the month changes, sets the number of days in this month.
 	 // Side effects: changes the static variables dayOfMonth, month, year, dayOfWeek, nDaysInMonth.
 	
 private static void advance() {
+	// defined nDaysInMonth according to the class.
     nDaysInMonth = nDaysInMonth(month, year);
-
+	//advance the days.
     dayOfWeek++;
     dayOfMonth++;
-
+	// return to sunday after the week end
     if (dayOfWeek > 7) {
         dayOfWeek = 1;
     }
-
+	// return to first day of the month after the month end
     if (dayOfMonth > nDaysInMonth) {
         dayOfMonth = 1;
         month++;
-
+	
+	// return to first month of the after the year end.
         if (month > 12) {
             month = 1;
             year++;
 
-            if (year > 1999) {
-                // Assuming you want to stop at the end of 1999
-                return;
-            }
         }
     }
-
+	// check if the first day of the month is sunday.
     if (dayOfWeek == 1 && dayOfMonth == 1) {
         firstSundays++;
     }
 }
 
-
-
 		 
     // Returns true if the given year is a leap year, false otherwise.
 	private static boolean isLeapYear(int year) {
-	    // Replace the following statement with your code
+	    
 		boolean isLeapYear;
 // Checks if the year is divisible by 400
 		isLeapYear = ((year % 400) == 0);
@@ -89,8 +83,8 @@ private static void advance() {
 	// February has 28 days in a common year, and 29 days in a leap year.
 	// All the other months have 31 days.
 	private static int nDaysInMonth(int month, int year) {
-		// Replace the following statement with your code
 		int nDaysInMonth = -1;
+		//check the month number and matches the number of days to the month.	
 		if (month == 4||month == 6||month == 9||month == 11){
 			nDaysInMonth = 30;
 		} else if (month == 1||month ==3||month ==5||month ==7||month ==8||month ==10||month ==12) {

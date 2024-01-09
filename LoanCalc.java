@@ -39,9 +39,12 @@ public class LoanCalc {
 	*/
 	// Side effect: modifies the class variable iterationCounter.
     public static double bruteForceSolver(double loan, double rate, int n, double epsilon) {  
-    	// Replace the following statement with your code
+    	// define the payment to start from the loan sum/the number of periods, becase its the minimum payment (with 0% rate).
+		
 		double payment = loan / (double)n;
 		iterationCounter = 0;
+		// compute the approximation of the periodical payment that will bring the ending balance of a loan close to 0, and count the iterations.
+		
 		while (endBalance(loan,rate,n,payment)>=epsilon){
 			payment  = payment + epsilon;
 			iterationCounter ++;	
@@ -58,11 +61,16 @@ public class LoanCalc {
 	*/
 	// Side effect: modifies the class variable iterationCounter.
    public static double bisectionSolver(double loan, double rate, int n, double epsilon) {
+	// define the L to start from the loan sum/the number of periods, becase its the minimum payment and the H to be the loan (max).
+	
     double L = loan / (double)n;
     double H = loan;
+	// defined the payment to be the average of L and H.
+	
     double payment = (L + H) / 2;
     iterationCounter = 0;
-
+	// use bi-section search method to approximation of the periodical payment that will bring the ending balance of a loan close to 0
+	
     while ((H - L) >= epsilon) {
         if (endBalance(loan, rate, n, payment) * endBalance(loan, rate, n, L) < 0) {
             H = payment;
@@ -82,13 +90,15 @@ public class LoanCalc {
 	* interest rate (as a percentage), the number of periods (n), and the periodical payment.
 	*/
 	private static double endBalance(double loan, double rate, int n, double payment) {
-		// Replace the following statement with your code
+		// define the end to start with the loan sum. define the rate properly.
 		double end = loan;
 		rate = rate/100;
+		// the for loop compute the ending balance according to the given parametens
 		for (int i = 0; i < n; i++){
 		end = (loan - payment) * (rate +1);
 		loan = end;
 		}
+		// return the ending balance.
     	return end;	
 		}
 		

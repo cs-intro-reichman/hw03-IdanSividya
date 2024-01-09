@@ -1,7 +1,8 @@
 /** String processing exercise 1. */
 public class LowerCase {
     public static void main(String[] args) {  
-        String str = args[0];
+//get string from user, and prints the string with only lower-case letters
+	String str = args[0];
         System.out.println(lowerCase(str));
     }
 
@@ -11,11 +12,12 @@ public class LowerCase {
     * Non-letter characters are left as is.
     */
     public static String lowerCase(String str) {
-        // Replace the following statement with your code
+        // define empty string for updaing it later with lower case letters.
         String lowletters = "";
         for (int i = 0; i < str.length(); i++)
         {
             char convertChar = str.charAt(i);
+		//check if the char is upper-case letter and convert it. Then update the new string with the lower-case letters.
             if (convertChar >= 65 && convertChar <=90 )
             {
                 convertChar = (char)(convertChar + 32);
